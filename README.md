@@ -7,15 +7,19 @@ At Frontier, we aim to help our customers find and hire more candidates by impro
 When we generate our application forms, the first step involves capturing the customer's original form and generating a detailed schematic to describe the form to our React form generator on the frontend. For this exercise we'd like you to build a simple form generator based on some provided data.
 
 ## About the exercise
-The JSON array in `./src/data/form_instructions.json` is an example of the instructions used by our React app to generate application forms on the fly for our customers. 
+The JSON array in `./src/data/form_instructions.json` is an example of the instructions used by our React app to generate application forms on the fly for our customers.
 
 For this short exercise, please use the basic React setup provided in this repo, along with the provided instruction JSON, to generate a functional application form UI. We want you to solve the problem in a way that makes sense to you, but we ask that you consider the following constraints:
 
+#### Engineering
 - Please use Typescript to the best of your ability.
-- Please try to make use of ES6 and React hooks.
-- In your finished implementation, the "Submit" button should log the user entered values to the console.
-- Style the UI yourself by any means you feel comfortable (ie. styled-components, SCSS, LESS, vanilla CSS). Try to avoid using third party UI libraries like material-ui and bootstrap. We're primarily looking for consistency in styling, so you don't need to spend a lot of time making everything look perfect.
-- Try to structure your code so it can be unit tested. Bonus points if you also write a unit test for one of your components.
+- Please try to make good use of ES6 and React hooks.
+- In your finished product, the "Submit" button should log the user-entered form values to the console.
+- Try to structure your code so it can be unit tested. Bonus points if you also write a simple unit test for one of your components.
+
+#### Design
+- You have full creative control of the design. Feel free to have fun with it, or use our example image as reference.
+- Style the UI yourself by any means you feel comfortable (ie. styled-components, SCSS, LESS, vanilla CSS). Try to avoid using third party UI libraries like material-ui and bootstrap. We're primarily looking for consistency with styling, so there's no need to spend time on minute details.
 
 ### Getting started
 
