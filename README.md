@@ -32,3 +32,5 @@ When you send your solution back to us, please include your thoughts on the exer
 Good luck!
 
 – Frontier Engineering :)
+
+*ps -- We encourage you to treat the brief above like a product spec (and not a school test) where the customer requirements take precidence over the path you take to deliver them. So if you notice a more efficient path, or need to shave off some time to deliver your solution, just let us know in your response!*
