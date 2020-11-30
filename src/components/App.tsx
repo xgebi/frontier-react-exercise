@@ -2,8 +2,10 @@ import React from 'react';
 import formInstructions from '../data/form_instructions.json';
 
 function App() {
+  const job = formInstructions as Frontier.Job;
+
   // Check your console to see the full instructions!
-  console.log(formInstructions);
+  console.log(job);
 
   return (
     <div>
