@@ -1,9 +1,9 @@
 {
   "theme": {
-    "primary_color": "#CE342E",
-    "secondary_color": "#2EC8CE",
-    "background_color": "#F5F1FF",
-    "text_color": "#131531"
+    "primary_color": "#623CEA",
+    "secondary_color": "#E7DFC6",
+    "background_color": "#E9F1F7",
+    "text_color": "#54426B"
   },
   "sections": [
     {
@@ -364,10 +364,6 @@
               {
                 "label": "Southern Min (incl. Hokkien and Teochew)",
                 "value": "Southern Min (incl. Hokkien and Teochew)"
-              },
-              {
-                "label": "Spanish",
-                "value": "Spanish"
               },
               {
                 "label": "Sundanese",
