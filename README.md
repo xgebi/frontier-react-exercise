@@ -1,6 +1,10 @@
 # Frontier React Exercise
 
-At Frontier, we aim to help our customers find and hire more candidates by improving their hiring funnel. One large part of this funnel is our highly optimized job application forms, which we generate for each customer based on their requirements and their existing application form.
+At [Frontier](https://frontier.jobs), we are on a [mission to get America back to work](https://www.nfx.com/post/3-reasons-why-nfx-invested-in-frontier/).
+
+We are building a vertically-integrated hiring marketplace that connects job seekers and employers faster than ever before. We’ve reimagined the job search experience, allowing jobseekers to book interviews directly with employers and connect them instantly via our virtual interview platform.
+
+The first step of the candidate experience is applying for the job through Frontier's highly optimized application form.
 
 ![An example of a Frontier application form](https://frontier-public-assets.s3-us-west-2.amazonaws.com/frontier-form-demo.png)
 
@@ -23,9 +27,9 @@ For this short exercise, please use the basic React setup provided in this repo,
 
 ### Getting started
 
-- 1. Checkout this repo and run `npm install` to install dependencies.
+- 1. Checkout this repo and run `yarn install` to install dependencies.
 - 2. Open `src/components/App.tsx` where you'll find the instruction JSON you'll need to build the form.
-- 3. Run `npm start` to launch the dev server.
+- 3. Run `yarn start` to launch the dev server.
 
 When you send your solution back to us, please include your thoughts on the exercise and how long you spent on it so we can adjust our expectations.
 
