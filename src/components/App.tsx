@@ -1,18 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import formInstructions from '../data/form_instructions.json';
+import DisplaySection from "./DisplaySection";
 
 function App() {
   const job = formInstructions as Frontier.Job;
-
-  // Check your console to see the full instructions!
-  console.log(job);
+  const [page, setPage] = useState(0)
 
   return (
-    <div>
-      <img src="https://frontier-public-assets.s3-us-west-2.amazonaws.com/frontier-corona-logo.svg" alt="Frontier Logo" />
-      <h1>👋 Hello from Team Frontier!</h1>
-      <p>Good luck with the exercise. If you have any questions please email Jason: jason@frontier.jobs</p>
-    </div>
+    <main>
+      <article>
+        <h1>{job.sections[page].title}</h1>
+        <DisplaySection sectionItems={job.sections[page]} />
+      </article>
+      {page > 0 && <button className={"previous-button"} onClick={() => setPage(page - 1)}>Previous</button>}
+      {page < job.sections.length - 1 && <button className={"next-button"} onClick={() => setPage(page + 1)}>Next</button>}
+    </main>
   );
 }
 
