@@ -481,7 +481,9 @@
           "metadata": {
             "format": "number",
             "step": 1,
-            "placeholder": "Hours..."
+            "placeholder": "Hours...",
+            "min": 0,
+            "max": 168
           },
           "question_text": "How many hours per week could you dedicate to the project, including training?"
         }

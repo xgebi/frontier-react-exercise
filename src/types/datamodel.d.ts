@@ -40,5 +40,7 @@ namespace Frontier {
     format?: 'text' | 'email' | 'number';
     pattern?: string;
     step?: number;
+    min?: number;
+    max?: number;
   }
 }
