@@ -16,6 +16,10 @@ function App() {
     setData(data);
   }, [])
 
+  /**
+   * Function which serves as event listener to change data in app's state
+   * @param passedData
+   */
   const processData = (passedData: { id: string, value: string, remove?: boolean }) => {
     data.set(passedData.id, passedData.value);
     setData(data);

@@ -1,12 +1,23 @@
 import React from "react";
 import ElementComponent from "./Element";
 
+/**
+ * Props for DisplaySection components
+ */
 type DisplaySectionProps = {
   sectionItems: Frontier.Section,
   passData: Function,
   appState: Map<string, string>
 }
 
+/**
+ * Display each section and creates basic element component
+ *
+ * @param sectionItems
+ * @param passData
+ * @param appState
+ * @constructor
+ */
 function DisplaySection({ sectionItems, passData, appState }: DisplaySectionProps): JSX.Element {
   return (
     <div className={"contents"}>

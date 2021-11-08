@@ -12,6 +12,6 @@ test('Text input is rendered', () => {
     },
     type: "text",
   }
-  render(<TextComponent data={textData} passData={() => {}} />)
+  render(<TextComponent data={textData} passData={() => {}}  appState={new Map<string, string>()}/>)
   expect(screen.queryByText(textData.question_text)).toBeTruthy()
 })

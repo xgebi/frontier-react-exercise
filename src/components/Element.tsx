@@ -1,13 +1,29 @@
 import React, {ChangeEvent, ChangeEventHandler, FocusEventHandler, useState} from 'react';
 
+/**
+ * Props that are shared between elements
+ */
 type ElementComponentProps = {
   data: Frontier.Element,
   passData: Function,
   appState: Map<string, string>
 }
 
-function RadioComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
+/**
+ * Generates a component for a form element where yes/no choice is needed
+ *
+ * @param data
+ * @param passData
+ * @param appState
+ * @constructor
+ */
+function SingleChoiceComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   const [value, setValue] = useState(appState.get(data.id)! === 'true');
+
+  /**
+   * Prepares data for app's state update
+   * @param event
+   */
   function processData(event: React.ChangeEvent<HTMLInputElement>) {
     setValue(event.target.checked);
     passData({
@@ -25,6 +41,14 @@ function RadioComponent({ data, passData, appState }: ElementComponentProps): JS
   );
 }
 
+/**
+ * Generates a list of options for user to choose from
+ *
+ * @param data
+ * @param passData
+ * @param appState
+ * @constructor
+ */
 function MultiChoiceComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   const values = new Map<string, boolean>();
   data.metadata.options?.forEach((option: { label: string; value: string }) => {
@@ -32,14 +56,19 @@ function MultiChoiceComponent({ data, passData, appState }: ElementComponentProp
   })
 
   const [value, setValue] = useState(values);
+
+  /**
+   * Prepares data for app's state update
+   * @param event
+   */
   function processData(event: React.ChangeEvent<HTMLInputElement>) {
     const newMap = new Map(value);
     newMap.set(event.target.name, event.target.checked)
     setValue(newMap)
     let items: string = "";
-    debugger
+
     // @ts-ignore
-    for (const item of newMap) {
+    for (let item of newMap) {
       if (item[1]) {
         items = items.length > 0 ? `${items},${item[0]}` : item[0];
       } else if (items.indexOf(item[0]) >= 0) {
@@ -53,7 +82,6 @@ function MultiChoiceComponent({ data, passData, appState }: ElementComponentProp
       value: items,
     });
   }
-  // !!value && value!.indexOf(option.value) >= 0
   return (
     <div className={"element"}>
       <span>{data.question_text}</span>
@@ -71,8 +99,21 @@ function MultiChoiceComponent({ data, passData, appState }: ElementComponentProp
   );
 }
 
+/**
+ * Generates component for text, number and email address. By default it creates a text input.
+ *
+ * @param data
+ * @param passData
+ * @param appState
+ * @constructor
+ */
 function TextComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   const [value, setValue] = useState(appState.get(data.id) ? appState.get(data.id)! : "");
+
+  /**
+   * Prepares data for app's state update
+   * @param event
+   */
   function processData(event: React.FocusEvent<HTMLInputElement>) {
     passData({
       id: data.id,
@@ -81,18 +122,6 @@ function TextComponent({ data, passData, appState }: ElementComponentProps): JSX
   }
   const input = (): JSX.Element => {
     switch (data.metadata.format) {
-      case "text":
-        return (
-          <input
-            id={data.id}
-            name={data.id}
-            type={data.metadata.format}
-            required={data.metadata.required}
-            placeholder={data.metadata.placeholder}
-            value={value}
-            onChange={event => setValue(event.target.value)}
-            onBlur={processData} />
-        )
       case "email":
         return (
           <input
@@ -126,10 +155,12 @@ function TextComponent({ data, passData, appState }: ElementComponentProps): JSX
           <input
             id={data.id}
             name={data.id}
-            type={"text"}
+            type={data.metadata.format}
+            required={data.metadata.required}
+            placeholder={data.metadata.placeholder}
             value={value}
             onChange={event => setValue(event.target.value)}
-            onBlur={processData}/>
+            onBlur={processData} />
         )
     }
   }
@@ -141,8 +172,21 @@ function TextComponent({ data, passData, appState }: ElementComponentProps): JSX
   );
 }
 
+/**
+ * Generates a text area component
+ *
+ * @param data
+ * @param passData
+ * @param appState
+ * @constructor
+ */
 function TextareaComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   const [value, setValue] = useState(appState.get(data.id)!);
+
+  /**
+   * Prepares data for app's state update
+   * @param event
+   */
   function processData(event: React.FocusEvent<HTMLTextAreaElement>) {
     passData({
       id: data.id,
@@ -164,9 +208,18 @@ function TextareaComponent({ data, passData, appState }: ElementComponentProps):
   );
 }
 
+/**
+ * Component which chooses which should be generated. Default option is span in this case as by default it is
+ * an inline element and shouldn't break UI.
+ *
+ * @param data
+ * @param passData
+ * @param appState
+ * @constructor
+ */
 function ElementComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   switch (data.type) {
-    case "boolean": return (<RadioComponent data={data} passData={passData} appState={appState} />)
+    case "boolean": return (<SingleChoiceComponent data={data} passData={passData} appState={appState} />)
     case "multichoice": return (<MultiChoiceComponent data={data} passData={passData} appState={appState} />);
     case "text": return (<TextComponent data={data} passData={passData} appState={appState} />)
     case "textarea": return (<TextareaComponent data={data} passData={passData} appState={appState} />)
@@ -175,4 +228,5 @@ function ElementComponent({ data, passData, appState }: ElementComponentProps): 
   }
 }
 export default ElementComponent;
-export { RadioComponent, MultiChoiceComponent, TextareaComponent, TextComponent };
+// next export is mostly for testing purposes
+export { SingleChoiceComponent, MultiChoiceComponent, TextareaComponent, TextComponent };
