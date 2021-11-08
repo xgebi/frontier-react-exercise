@@ -2,9 +2,21 @@ import React, {useEffect, useState} from 'react';
 import formInstructions from '../data/form_instructions.json';
 import DisplaySection from "./DisplaySection";
 
+/**
+ * Function which serves as base function for the application
+ * @constructor
+ */
 function App() {
   const job = formInstructions as Frontier.Job;
   const [page, setPage] = useState(0)
+  /**
+   * Notes for choosing Map<string, string>.
+   *
+   * Another assumption, the app will never know what will arrive. The form elements would be fetched from
+   * server instead of living in a folder. Creating a dynamic interface to store in the state is at the
+   * moment above my skill level. So storing everything in plain text and having easy access in key-value
+   * object seemed as a good tradeoff.
+   */
   const [data, setData] = useState(new Map<string, string>())
   useEffect(() => {
     const data = new Map();

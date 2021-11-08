@@ -40,6 +40,8 @@ namespace Frontier {
     format?: 'text' | 'email' | 'number';
     pattern?: string;
     step?: number;
+    // my two additions after seeing the questions where negative hours and more than 168 hours per week
+    // made no sense
     min?: number;
     max?: number;
   }
