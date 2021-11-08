@@ -47,6 +47,7 @@ function App() {
 
   return (
     <main style={style}>
+      <div className={"steps-counter"}>Step {page + 1} of {job.sections.length}</div>
       <article>
         <h1>{job.sections[page].title}</h1>
         <DisplaySection sectionItems={job.sections[page]} passData={processData} appState={data}/>
