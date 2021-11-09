@@ -29,7 +29,7 @@ function App() {
   }, [])
 
   /**
-   * Function which serves as event listener to change data in app's state
+   * Function which serves as event listener to data change from components
    * @param passedData
    */
   const processData = (passedData: { id: string, value: string, remove?: boolean }) => {

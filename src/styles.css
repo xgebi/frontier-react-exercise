@@ -13,7 +13,11 @@ body {
     font-size: 1.25em;
 }
 
-body main {
+main {
+    --primary-color: teal;
+    --secondary-color: orange;
+    --background-color: #eee;
+    --text-color: #111;
     grid-column: 2 / 3;
     display: grid;
     gap: 1rem;
@@ -88,7 +92,7 @@ input {
     margin-right: 1rem;
 }
 
-input[type="email"]:invalid {
+input[type="email"].invalid {
     border: 1px solid red;
 }
 

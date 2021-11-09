@@ -35,7 +35,7 @@ function SingleChoiceComponent({ data, passData, appState }: ElementComponentPro
     <div className={"element"}>
       <label htmlFor={data.id}>
         <input type="checkbox" name={data.id} id={data.id} onChange={processData} checked={value} />
-        {data.question_text}
+        {data.question_text} {data.metadata.required && <span>(required)</span>}
       </label>
     </div>
   );
@@ -84,7 +84,7 @@ function MultiChoiceComponent({ data, passData, appState }: ElementComponentProp
   }
   return (
     <div className={"element"}>
-      <span>{data.question_text}</span>
+      <span>{data.question_text} {data.metadata.required && <span>(required)</span>}</span>
       <div className={`dropdown`}>
         {data.metadata.options?.map(option => {
           return (
@@ -109,12 +109,16 @@ function MultiChoiceComponent({ data, passData, appState }: ElementComponentProp
  */
 function TextComponent({ data, passData, appState }: ElementComponentProps): JSX.Element {
   const [value, setValue] = useState(appState.get(data.id) ? appState.get(data.id)! : "");
+  const [valid, setValid] = useState(true)
 
   /**
    * Prepares data for app's state update
    * @param event
    */
   function processData(event: React.FocusEvent<HTMLInputElement>) {
+    if (event.target.pattern && event.target.value.length > 0) {
+      setValid(!!event.target.value.match(event.target.pattern));
+    }
     passData({
       id: data.id,
       value: event.target.value,
@@ -131,6 +135,7 @@ function TextComponent({ data, passData, appState }: ElementComponentProps): JSX
             required={data.metadata.required}
             pattern={data.metadata.pattern}
             placeholder={data.metadata.placeholder}
+            className={!valid ? "invalid" : ""}
             value={value}
             onChange={event => setValue(event.target.value)}
             onBlur={processData}/>
@@ -166,7 +171,7 @@ function TextComponent({ data, passData, appState }: ElementComponentProps): JSX
   }
   return (
     <div className={"element"}>
-      <label htmlFor={data.id}>{data.question_text}</label>
+      <label htmlFor={data.id}>{data.question_text} {data.metadata.required && <span>(required)</span>}</label>
       {input()}
     </div>
   );
@@ -195,7 +200,7 @@ function TextareaComponent({ data, passData, appState }: ElementComponentProps):
   }
   return (
     <div className={"element"}>
-      <label htmlFor={data.id}>{data.question_text}</label>
+      <label htmlFor={data.id}>{data.question_text} {data.metadata.required && <span>(required)</span>}</label>
       <textarea
         id={data.id}
         name={data.id}
