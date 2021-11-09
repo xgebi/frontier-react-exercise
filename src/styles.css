@@ -14,6 +14,7 @@ body {
 }
 
 main {
+    /* Default colors, will be overriden from data */
     --primary-color: teal;
     --secondary-color: orange;
     --background-color: #eee;
